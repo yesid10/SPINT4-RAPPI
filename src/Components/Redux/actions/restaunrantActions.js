@@ -1,6 +1,6 @@
 import { collection, getDocs } from "firebase/firestore";
 import { firestore } from "../../../Firebase/firebaseConfigure";
-import { setRestaurants } from "../reducers/authReducer";
+import { setRestaurants, setSelectedRestaurantId } from "../reducers/authReducer";
 
 const coleccionRestaurants = collection(firestore, 'restaurants')
 export const listRestaurants = () => {
@@ -12,6 +12,16 @@ export const listRestaurants = () => {
                 tempArr.push({id: restaurant.id, ...restaurant.data()})
             });
             dispatch(setRestaurants(tempArr));
+        } catch (error) {
+            console.log('error',error);
+        }
+    }
+}
+
+export const navigateRestaurantDetail = (id) => {
+    return async (dispatch) => {
+        try {
+            dispatch(setSelectedRestaurantId(id));
         } catch (error) {
             console.log('error',error);
         }

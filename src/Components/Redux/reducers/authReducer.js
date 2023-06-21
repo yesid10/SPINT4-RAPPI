@@ -3,6 +3,7 @@ import {createSlice} from '@reduxjs/toolkit';
 const initialState = {
     user: null,
     restaurantes: [],
+    selectedRestaurantId: null,
 };
 
 const authSlice = createSlice({
@@ -20,10 +21,13 @@ const authSlice = createSlice({
             reducer: (state, action) => {
                 state.restaurantes = action.payload
             }
+        },
+        setSelectedRestaurantId: (state, action) => {
+            state.selectedRestaurantId = action.payload;
         }
     }
 });
 
 
-export const {setUser, user, addUser, setRestaurants} = authSlice.actions;
+export const {setUser, user, addUser, setRestaurants, setSelectedRestaurantId} = authSlice.actions;
 export default  authSlice.reducer;

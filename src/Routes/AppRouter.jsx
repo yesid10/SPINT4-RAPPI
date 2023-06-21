@@ -3,6 +3,7 @@ import SplashScreen from "../Components/SplashScreen/SplashScreen"
 import SingIn from "../Components/SingIn/SingIn"
 import CreateAcount from "../Components/CreateAccount/CreateAcount"
 import Home from "../Components/Home/Home"
+import RestaurantPage from "../Components/RestaurantPage/RestaurantPage"
 
 const AppRouter = () => {
   return (
@@ -12,6 +13,7 @@ const AppRouter = () => {
             <Route path="/singin" element={<SingIn/>}/> 
             <Route path="/createacount" element={<CreateAcount/>}/>
             <Route path="/home" element={<Home/>}/>
+            <Route path="/restaurante/:id" element={<RestaurantPage/>}/>
         </Routes>
     </BrowserRouter>
   )
