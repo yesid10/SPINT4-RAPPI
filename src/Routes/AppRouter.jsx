@@ -4,6 +4,7 @@ import SingIn from "../Components/SingIn/SingIn"
 import CreateAcount from "../Components/CreateAccount/CreateAcount"
 import Home from "../Components/Home/Home"
 import RestaurantPage from "../Components/RestaurantPage/RestaurantPage"
+import DetailsPlato from "../Components/DetailsPlato/DetailsPlato"
 
 const AppRouter = () => {
   return (
@@ -14,6 +15,7 @@ const AppRouter = () => {
             <Route path="/createacount" element={<CreateAcount/>}/>
             <Route path="/home" element={<Home/>}/>
             <Route path="/restaurante/:id" element={<RestaurantPage/>}/>
+            <Route path="/detalleplato/:name" element={<DetailsPlato/>}/>
         </Routes>
     </BrowserRouter>
   )

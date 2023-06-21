@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { listRestaurants } from "../Redux/actions/restaunrantActions";
+import { listRestaurants, navigateRestaurantDetail } from "../Redux/actions/restaunrantActions";
 import { Rating } from "@mui/material";
 import { Div, StylesDivInfo } from "./StylesHome";
 import { TbHome } from 'react-icons/tb';
@@ -9,7 +9,6 @@ import { MdOutlineHistory } from 'react-icons/md';
 import { FaRegUser } from 'react-icons/fa';
 import { MdLocationOn } from 'react-icons/md';
 import { Carousel } from 'antd';
-import { setSelectedRestaurantId } from "../Redux/reducers/authReducer";
 import { Link} from "react-router-dom";
 
 
@@ -35,7 +34,7 @@ const Home = () => {
     }, [dispatch, restaurantes, restaurantsLoaded]);
 
     const handleClickRestaurant = (res) => {
-        dispatch(setSelectedRestaurantId(res));
+        dispatch(navigateRestaurantDetail(res));
         console.log(res);
     }
   
