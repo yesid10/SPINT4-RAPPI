@@ -1,7 +1,6 @@
 import { styled } from "styled-components";
 import Logo from '../../assets/Logo.png'
 export const Screen = styled.div`
-  background-color: #ffe031;
   width: 100%;
   height: 100vh;
   display: flex;
