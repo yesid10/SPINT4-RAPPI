@@ -10,7 +10,7 @@ import { FaRegUser } from 'react-icons/fa';
 import { MdLocationOn } from 'react-icons/md';
 import { Carousel } from 'antd';
 import { setSelectedRestaurantId } from "../Redux/reducers/authReducer";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 
 

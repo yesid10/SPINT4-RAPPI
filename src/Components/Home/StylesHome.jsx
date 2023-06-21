@@ -12,6 +12,7 @@ export const StylesDivInfo = styled.div`
   img {
     width: 18rem;
     height: 12rem;
+    object-fit: cover;
     clip-path: polygon(0 0, 100% 0, 100% 10%, 70% 100%, 0% 100%);
     border-radius: 0.625rem;
     box-sizing: border-box;
@@ -51,6 +52,18 @@ export const Div = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   margin-top: 20rem;
+  border-radius: 15px;
+
+  .categories{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    span{
+      background-color: #F2F2F2 ;
+      padding: 1rem 3rem;
+      border-radius: 5px;
+    }
+  }
 
   .pResta {
     font-size: 1.6rem;
