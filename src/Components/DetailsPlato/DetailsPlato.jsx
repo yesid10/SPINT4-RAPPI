@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Div } from "../Home/StylesHome";
 import { MdAccessTime } from 'react-icons/md';
 import { DivContador, DivIngredientes, InfoPlato } from "./StylesPlatoDetails";
@@ -6,14 +6,16 @@ import Checkbox from '@mui/material/Checkbox';
 import { HiMinusSm } from 'react-icons/hi';
 import { BiPlus } from 'react-icons/bi';
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { cantidadPlato } from "../Redux/actions/restaunrantActions";
 const DetailsPlato = () => {
     const plato = useSelector((store) => store.authReducer.platoSeleccionado);
     console.log(plato)
-
+    const navigate = useNavigate();
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
     const priceString = plato.price
     const priceNumber = Number(priceString.replace('$',''));
-    
+    const dispatch = useDispatch();
     const [cantidad, setCantidad] = useState(1);
 
     const handlePlus = () => {
@@ -25,7 +27,10 @@ const DetailsPlato = () => {
         }
     }
 
-
+    const handleNavigate = () => {
+        dispatch(cantidadPlato(cantidad))
+        navigate('/order')
+    }
 
 
     return (
@@ -76,7 +81,7 @@ const DetailsPlato = () => {
                     <span>{cantidad}</span>
                     <button onClick={() => handlePlus()}><BiPlus/></button>
                 </div>
-                <div className="price">
+                <div onClick={() => handleNavigate()} className="price">
                     <span>Add</span>
                     <span>${cantidad* priceNumber}</span>
                 </div>

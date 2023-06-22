@@ -1,6 +1,6 @@
 import { collection, getDocs } from "firebase/firestore";
 import { firestore } from "../../../Firebase/firebaseConfigure";
-import { setPlatoSeleccionado, setRestaurants, setSelectedRestaurantId } from "../reducers/authReducer";
+import { setCantidad, setPlatoSeleccionado, setRestaurants, setSelectedRestaurantId } from "../reducers/authReducer";
 
 const coleccionRestaurants = collection(firestore, 'restaurants')
 export const listRestaurants = () => {
@@ -35,4 +35,14 @@ export const navigateDetallePlato = (id) => {
             console.log('error',error);
         }
     }
+}
+
+export const cantidadPlato = (cantidad) =>{
+    return async (dispatch) => {
+        try {
+            dispatch(setCantidad(cantidad));
+        } catch (error) {
+            console.log('error cantidad', error);
+        }
+    }   
 }

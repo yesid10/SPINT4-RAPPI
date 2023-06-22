@@ -4,7 +4,8 @@ const initialState = {
     user: null,
     restaurantes: [],
     selectedRestaurantId: null,
-    platoSeleccionado: null,
+    platoSeleccionado: [],
+    cantidad: null,
 };
 
 const authSlice = createSlice({
@@ -28,10 +29,13 @@ const authSlice = createSlice({
         },
         setPlatoSeleccionado: (state, action) => {
             state.platoSeleccionado = action.payload
+        },
+        setCantidad: (state, action) => {
+            state.cantidad = action.payload
         }
     }
 });
 
 
-export const {setUser, user, addUser, setRestaurants, setSelectedRestaurantId, setPlatoSeleccionado} = authSlice.actions;
+export const {setUser, user, addUser, setRestaurants, setSelectedRestaurantId, setPlatoSeleccionado, setCantidad} = authSlice.actions;
 export default  authSlice.reducer;
