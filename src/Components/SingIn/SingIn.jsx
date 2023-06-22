@@ -5,13 +5,15 @@ import { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { useDispatch } from 'react-redux';
 import { login, loginGoogle } from '../Redux/actions/authActions';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
+import { Div } from "../Home/StylesHome"
+import { ContainDiv } from './StylesSingIn';
 const SingIn = () => {
     const dispatch = useDispatch();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-    const navigate = useNavigate();
+
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
     const handleMouseDownPassword = (event) => {
@@ -25,68 +27,70 @@ const SingIn = () => {
     }
     const handleLoginGoogle = async () => {
         await dispatch(loginGoogle());
-        navigate('/')
+        // navigate('/')
         console.log('enviado con google');
     }
     return (
-        <div>
-            <figure>
-                <img src={Logo} alt="logo" />
-            </figure>
-            <div>
-                <h3>Sing In</h3>
-                <p>Login or create an account with your
-                    phone number to start ordering</p>
-            </div>
-
-            <form onSubmit={handleLogin}>
-                <div>
-                    <TextField
-                        sx={{ m: 1, width: '100%' }}
-                        id="standard-textarea"
-                        label="Email "
-                        placeholder="example@example.com"
-                        multiline
-                        variant="standard"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
+        <Div style={{ marginTop: '0' }}>
+            <ContainDiv>
+                <figure>
+                    <img src={Logo} alt="logo" />
+                </figure>
+                <div className='singIn'>
+                    <h3>Sing In</h3>
+                    <p>Login or create an account with your
+                        phone number to start ordering</p>
                 </div>
-                <div>
-                    <FormControl sx={{ m: 1, width: '100%' }} variant="standard">
-                        <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
-                        <Input
-                            id="standard-adornment-password"
-                            type={showPassword ? 'text' : 'password'}
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            endAdornment={
-                                <InputAdornment position="end">
-                                    <IconButton
-                                        aria-label="toggle password visibility"
-                                        onClick={handleClickShowPassword}
-                                        onMouseDown={handleMouseDownPassword}
-                                    >
-                                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                                    </IconButton>
-                                </InputAdornment>
-                            }
+
+                <form onSubmit={handleLogin}>
+                    <div>
+                        <TextField
+
+                            sx={{ m: 1, width: '100%', }}
+                            id="standard-textarea"
+                            label="Email "
+                            placeholder="example@example.com"
+                            multiline
+                            variant="standard"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
-                    </FormControl>
+                    </div>
+                    <div>
+                        <FormControl sx={{ m: 1, width: '100%' }} variant="standard">
+                            <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+                            <Input
+                                id="standard-adornment-password"
+                                type={showPassword ? 'text' : 'password'}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                endAdornment={
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            aria-label="toggle password visibility"
+                                            onClick={handleClickShowPassword}
+                                            onMouseDown={handleMouseDownPassword}
+                                        >
+                                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                }
+                            />
+                        </FormControl>
 
-                </div>
-                <div>
-                    <FcGoogle />
-                    <button type='button' onClick={() => handleLoginGoogle()}>Sign In With Google</button>
-                </div>
-                <div>
-                    <button type='submit'>Login</button>
-                </div>
-            </form>
-            <div>
-                <p>Register</p>
-            </div>
-        </div>
+                    </div>
+                    <div className='iniciarConGoggle' onClick={() => handleLoginGoogle()}>
+                        <FcGoogle style={{ fontSize: '1.7rem' }} />
+                        <button type='button'>Sign In With Google</button>
+                    </div>
+                    <div className='login'>
+                        <button type='submit'>Login</button>
+                    </div>
+                    <button className='crearCuenta'>Crear Cuenta</button>
+                </form>
+            </ContainDiv>
+
+        </Div>
     )
 }
 
