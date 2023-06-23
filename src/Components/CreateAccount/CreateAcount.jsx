@@ -4,10 +4,10 @@ import { DivForm } from "./StylesCreateAcount";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { createUser } from "../Redux/actions/userActions";
-import fileUpLoad from "../../services/fileUpload.js";
+import fileUpLoad from "../../services/fileUpload";
 import { useNavigate } from "react-router-dom";
 import { setError } from "../Redux/reducers/authReducer";
+import { createUser } from "../Redux/actions/userActions";
 
 const CreateAcount = () => {
     const dispatch = useDispatch();
@@ -44,18 +44,14 @@ const CreateAcount = () => {
               }
               return true;
             })
-            .test("tamañoArchivo", "El archivo es demasiado grande", (value) => {
-              if (value) {
-                const maxSize = 5 * 1024 * 1024; // 5 MB
-                return value.size <= maxSize;
-              }
-              return true;
-            }),
+            
         }),
         onSubmit: async (data) => {
             console.log("form enviado", data);
             const {name, email, password, repeatPassword, avatar} = data;
-            const avatarImg = await fileUpLoad(data.avatar)
+            
+            await fileUpLoad(avatar)
+           console.log(avatar);
            dispatch(createUser(email, password))
            
            if(error != false){
@@ -65,9 +61,13 @@ const CreateAcount = () => {
         },
     });
 
-    const handleFileChange = (event) => {
+    const handleFileChange = async (event) => {
         const file = event.currentTarget.files[0];
+        console.log(event.currentTarget.files[0]);
         formik.setFieldValue("avatar", file);
+        console.log(typeof(file));
+         
+         
     };
 
     

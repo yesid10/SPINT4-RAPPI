@@ -1,6 +1,7 @@
+
  const fileUpLoad = async (image) => {
     const cloudName = "dpudpgfv6";
-    const presetName = "poryecto-rappi";
+    const presetName = "rappi-redux";
     const urlCloudinary = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
   
     const formData = new FormData();
@@ -19,11 +20,13 @@
       }
   
       const data = await response.json();
+      console.log('yesiddata',data);
+      
       return data.secure_url;
     } catch (error) {
       console.log(error);
       return null;
-    }
+    } 
   };
 
   export default fileUpLoad;
