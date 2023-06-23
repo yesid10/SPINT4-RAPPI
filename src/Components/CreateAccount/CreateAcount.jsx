@@ -3,12 +3,17 @@ import "semantic-ui-css/semantic.min.css";
 import { DivForm } from "./StylesCreateAcount";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "../Redux/actions/userActions";
 import fileUpLoad from "../../services/fileUpload.js";
+import { useNavigate } from "react-router-dom";
+import { setError } from "../Redux/reducers/authReducer";
 
 const CreateAcount = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const error = useSelector((store) => store.authReducer.error);
+   
 
     const formik = useFormik({
         initialValues: {
@@ -51,7 +56,12 @@ const CreateAcount = () => {
             console.log("form enviado", data);
             const {name, email, password, repeatPassword, avatar} = data;
             const avatarImg = await fileUpLoad(data.avatar)
-           dispatch(createUser({name, email, password, repeatPassword, avatarImg}))
+           dispatch(createUser(email, password))
+           
+           if(error != false){
+            navigate('/singin')
+            dispatch(setError(false))
+           }
         },
     });
 
@@ -60,6 +70,8 @@ const CreateAcount = () => {
         formik.setFieldValue("avatar", file);
     };
 
+    
+    
     return (
         <DivForm>
 

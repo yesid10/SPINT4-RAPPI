@@ -5,6 +5,7 @@ import {
   } from 'firebase/auth';
 import { auth } from '../../../Firebase/firebaseConfigure';
 import { setUser } from '../reducers/authReducer';
+import Swal from 'sweetalert2';
   
   
   export const login = (email, password) => {
@@ -16,6 +17,13 @@ import { setUser } from '../reducers/authReducer';
         dispatch(setUser(user));
       } catch (error) {
         console.log("error", error)
+        if(error){
+          Swal.fire(
+            'Oops!',
+            'Credenciales incorrectas!',
+            'error'
+          )
+        }
       }
     };
   };

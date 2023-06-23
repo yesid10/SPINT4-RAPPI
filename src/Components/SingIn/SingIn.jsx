@@ -1,34 +1,70 @@
 import { FormControl, IconButton, Input, InputAdornment, InputLabel, TextField } from '@mui/material';
 import Logo from '../../assets/Logo.png';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login, loginGoogle } from '../Redux/actions/authActions';
 // import { useNavigate } from 'react-router-dom';
 import { Div } from "../Home/StylesHome"
 import { ContainDiv } from './StylesSingIn';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+
 const SingIn = () => {
     const dispatch = useDispatch();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const usuario = useSelector((store) => store.authReducer.user);
+    const username = usuario?.email.split('@')[0];
+    const firftLetter =username?.charAt(0).toUpperCase();
+    const remainingLetters = username?.slice(1);
+    const name = firftLetter + remainingLetters;
+
+    const nameFull = usuario?.displayName;
+    const namesArray = nameFull?.split(' ')[0];
+    
+
+  
+    const navigate = useNavigate();
+    const user = useSelector((store) => store.authReducer.user);
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
+    useEffect(() => {
+        if (user) {
+            Swal.fire(
+                'God Job!',
+                `Bienvenid@ ${namesArray? namesArray: name} `,
+                'success'
+              ).then(() =>{
+                  navigate('/banner/home')
+              })
+            
+        }
+        
+    }, [user]);
 
     const handleLogin = (e) => {
         e.preventDefault();
+        
         dispatch(login(email, password));
-        console.log('form enviado');
+      
+        
     }
+    
     const handleLoginGoogle = async () => {
         await dispatch(loginGoogle());
         // navigate('/')
         console.log('enviado con google');
+    }
+
+    const handleCreateAcoount = () => {
+        navigate("/createacount")
     }
     return (
         <Div style={{ marginTop: '0' }}>
@@ -86,7 +122,7 @@ const SingIn = () => {
                     <div className='login'>
                         <button type='submit'>Login</button>
                     </div>
-                    <button className='crearCuenta'>Crear Cuenta</button>
+                    <button onClick={() => handleCreateAcoount()} className='crearCuenta'>Crear Cuenta</button>
                 </form>
             </ContainDiv>
 

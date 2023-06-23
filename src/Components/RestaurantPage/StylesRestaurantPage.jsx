@@ -4,6 +4,7 @@ export const DivPlatos = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  margin-bottom: 10%;
 
   img {
     width: 20rem;

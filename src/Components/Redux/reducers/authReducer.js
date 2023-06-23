@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     user: null,
@@ -6,20 +6,21 @@ const initialState = {
     selectedRestaurantId: null,
     platoSeleccionado: [],
     cantidad: null,
+    error: false,
 };
 
 const authSlice = createSlice({
     name: 'auth',
     initialState,
 
-    reducers:{
+    reducers: {
         setUser: (state, action) => {
             state.user = action.payload
         },
         addUser: (state, action) => {
             state.user = action.payload
         },
-        setRestaurants:{
+        setRestaurants: {
             reducer: (state, action) => {
                 state.restaurantes = action.payload
             }
@@ -32,10 +33,22 @@ const authSlice = createSlice({
         },
         setCantidad: (state, action) => {
             state.cantidad = action.payload
+        },
+        setError: (state, action) => {
+            state.error = action.payload
         }
     }
 });
 
 
-export const {setUser, user, addUser, setRestaurants, setSelectedRestaurantId, setPlatoSeleccionado, setCantidad} = authSlice.actions;
-export default  authSlice.reducer;
+export const {
+    setUser,
+    user,
+    addUser,
+    setRestaurants,
+    setSelectedRestaurantId,
+    setPlatoSeleccionado,
+    setCantidad,
+    setError,
+} = authSlice.actions;
+export default authSlice.reducer;

@@ -1,37 +1,29 @@
 import { styled } from "styled-components";
-import Logo from '../../assets/Logo.png'
+import { keyframes } from "styled-components";
+
 export const Screen = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 
 `;
-export const CarImage = styled.div`
-  /* Estilos de la imagen */
-  width: 300px;
-  height: 300px;
-  background-image: url(${Logo});
-  background-position: 0 0;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  /* Animación */
-  animation-name: moveCar;
-  animation-duration: 3s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-
-  @keyframes moveCar {
-    0% {
-      background-position: 0 0;
-    }
-    /* 50% {
-      background-position: -200px 0;
-    } */
-    100% {
-      background-position: 700px 0;
-    }
+const slideInAnimation = keyframes`
+  0% {
+    transform: translateX(-100%);
   }
+  100% {
+    transform: translateX(0);
+  }
+`;
+export const CarImage = styled.img`
+ position: absolute;
+ width: 30%;
+  left: 70%;
+  top: 16%;
+  padding: 0%;
+  margin: 0;
+  animation: ${slideInAnimation} 4s forwards;
 `;

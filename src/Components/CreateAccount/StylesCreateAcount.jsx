@@ -4,14 +4,16 @@ export const DivForm = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 90ch;
   width: 100%;
+  margin-top: 1rem;
+  border-radius: 10px;
 
   
 
   Form {
     background-color: #fff;
-    width: 600;
+    width: 54%;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -31,6 +33,7 @@ export const DivForm = styled.div`
       line-height: 12px;
       color: #a7a7a7;
     }
+
   }
   .ui.button {
     display: flex;
@@ -41,11 +44,11 @@ export const DivForm = styled.div`
     border-radius: 10px;
     font-style: normal;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 1.4rem;
     line-height: 16px;
     text-align: center;
     color: #414141;
-    margin-top: 15rem;
+    margin-top: 10rem;
   }
   .ui.form .field .ui.input input,
   .ui.form .fields .field .ui.input input {

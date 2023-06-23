@@ -45,13 +45,15 @@ export const StylesDivInfo = styled.div`
   }
 `;
 export const Div = styled.div`
+  display: flex;
+  flex-direction: column;
   background-color: #fff;
   width: 50%;
-  position: absolute;
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  margin-top: 20rem;
+  margin-top: 45rem;
   border-radius: 15px;
 
   .categories{
@@ -70,12 +72,8 @@ export const Div = styled.div`
     color: #414141;
     margin: 5% 5%;
   }
-  .icons {
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
-    margin: 3% 0%;
-  }
+  
+  
   .carouselAutoplay {
     div {
       height: 30vh;

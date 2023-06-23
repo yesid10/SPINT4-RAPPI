@@ -17,7 +17,7 @@ const RestaurantPage = () => {
     console.log(plato);
   }
   return (
-    <Div style={{ marginTop: '23rem' }}>
+    <Div style={{ marginTop: '25rem'}}>
       <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <img style={{ width: '15rem', }} src="https://img.freepik.com/vector-gratis/plantilla-logotipo-chef-detallada_23-2148987940.jpg?w=740&t=st=1687382466~exp=1687383066~hmac=b6d35a4651ed43a0896cb31e1c4643d83c7e7edbfafb44e17037f7fe3cfd539b" alt="" />
       </div>
