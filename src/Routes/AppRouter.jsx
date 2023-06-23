@@ -9,7 +9,7 @@ import Order from "../Components/OrderPage/Order";
 import AceptedOrder from "../Components/OrderAcepted/AceptedOrder";
 import Search from "../Components/PageSearch/Search";
 import PerfilUsuario from "../Components/Perfil/PerfilUsuario";
-import Layout from "../Components/Layout/Layout";
+
 
 const AppRouter = () => {
   return (

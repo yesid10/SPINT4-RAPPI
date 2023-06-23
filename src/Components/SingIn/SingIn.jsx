@@ -42,7 +42,7 @@ const SingIn = () => {
                 `Bienvenid@ ${namesArray? namesArray: name} `,
                 'success'
               ).then(() =>{
-                  navigate('/banner/home')
+                  navigate('/home')
               })
             
         }

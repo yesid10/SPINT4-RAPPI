@@ -49,11 +49,11 @@ export const Div = styled.div`
   flex-direction: column;
   background-color: #fff;
   width: 50%;
-  position: relative;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  margin-top: 45rem;
+  margin-top: 22rem;
   border-radius: 15px;
 
   .categories{
