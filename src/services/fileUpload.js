@@ -21,7 +21,7 @@
   
       const data = await response.json();
       console.log('yesiddata',data);
-      
+      console.log(data.secure_url);
       return data.secure_url;
     } catch (error) {
       console.log(error);

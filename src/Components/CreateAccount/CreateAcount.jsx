@@ -9,11 +9,12 @@ import { useNavigate } from "react-router-dom";
 import { setError } from "../Redux/reducers/authReducer";
 import { createUser } from "../Redux/actions/userActions";
 
+
 const CreateAcount = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const error = useSelector((store) => store.authReducer.error);
-   
+
 
     const formik = useFormik({
         initialValues: {
@@ -36,28 +37,30 @@ const CreateAcount = () => {
                 ),
             repeatPassword: Yup.string().required(true).oneOf([Yup.ref('password')], "Las contraseñas ingresadas no coinciden"),
             avatar: Yup.mixed()
-            .required("Se requiere un archivo")
-            .test("tipoArchivo", "Tipo de archivo no válido", (value) => {
-              if (value) {
-                const allowedTypes = ["image/jpeg", "image/png"];
-                return allowedTypes.includes(value.type);
-              }
-              return true;
-            })
-            
+                .required("Se requiere un archivo")
+                .test("tipoArchivo", "Tipo de archivo no válido", (value) => {
+                    if (value) {
+                        const allowedTypes = ["image/jpeg", "image/png"];
+                        return allowedTypes.includes(value.type);
+                    }
+                    return true;
+                })
+
         }),
         onSubmit: async (data) => {
             console.log("form enviado", data);
-            const {name, email, password, repeatPassword, avatar} = data;
+            const { name, email, password, avatar } = data;
+
+            const avatarLink = await fileUpLoad(avatar);
+            console.log(avatarLink);
+
+            dispatch(createUser(email, password, name, avatarLink));
             
-            await fileUpLoad(avatar)
-           console.log(avatar);
-           dispatch(createUser(email, password))
-           
-           if(error != false){
-            navigate('/singin')
-            dispatch(setError(false))
-           }
+
+            if (error != true) {
+                navigate('/singin')
+                dispatch(setError(false))
+            }
         },
     });
 
@@ -65,13 +68,13 @@ const CreateAcount = () => {
         const file = event.currentTarget.files[0];
         console.log(event.currentTarget.files[0]);
         formik.setFieldValue("avatar", file);
-        console.log(typeof(file));
-         
-         
+        console.log(typeof (file));
+
+
     };
 
-    
-    
+
+
     return (
         <DivForm>
 
@@ -79,7 +82,7 @@ const CreateAcount = () => {
                 <p>Create account</p>
                 <label>NAME</label>
                 <Form.Input
-                   
+
                     name="name"
                     placeholder="Ingrese su nombre"
                     value={formik.values.name}
@@ -111,14 +114,15 @@ const CreateAcount = () => {
                     value={formik.values.repeatPassword}
                     error={formik.errors.repeatPassword}
                     onChange={formik.handleChange}
-                    
+
                 />
                 <label htmlFor="">AVATAR</label>
                 <Form.Input name="avatar" type="file" onChange={handleFileChange} />
-                <Form.Button  type="submit">Sing In</Form.Button>
+                <Form.Button type="submit">Sing In</Form.Button>
             </Form>
         </DivForm>
     );
 };
 
 export default CreateAcount;
+

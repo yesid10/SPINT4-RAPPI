@@ -4,17 +4,18 @@ import {
     signInWithPopup,
   } from 'firebase/auth';
 import { auth } from '../../../Firebase/firebaseConfigure';
-import { setUser } from '../reducers/authReducer';
+import { setUser} from '../reducers/authReducer';
 import Swal from 'sweetalert2';
   
   
-  export const login = (email, password) => {
+  export const login = (email, password, avatar  ) => {
     return async (dispatch) => {
       try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
         console.log("user", user)
         dispatch(setUser(user));
+        console.log(avatar);
       } catch (error) {
         console.log("error", error)
         if(error){

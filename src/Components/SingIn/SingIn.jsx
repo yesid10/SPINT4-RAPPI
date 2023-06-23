@@ -17,13 +17,8 @@ const SingIn = () => {
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const usuario = useSelector((store) => store.authReducer.user);
-    const username = usuario?.email.split('@')[0];
-    const firftLetter =username?.charAt(0).toUpperCase();
-    const remainingLetters = username?.slice(1);
-    const name = firftLetter + remainingLetters;
-
     const nameFull = usuario?.displayName;
-    const namesArray = nameFull?.split(' ')[0];
+    
     
 
   
@@ -39,7 +34,7 @@ const SingIn = () => {
         if (user) {
             Swal.fire(
                 'God Job!',
-                `Bienvenid@ ${namesArray? namesArray: name} `,
+                `Bienvenid@ ${usuario.name? usuario.name : nameFull} `,
                 'success'
               ).then(() =>{
                   navigate('/home')

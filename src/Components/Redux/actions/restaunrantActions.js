@@ -1,4 +1,4 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { firestore } from "../../../Firebase/firebaseConfigure";
 import { setCantidad, setPlatoSeleccionado, setRestaurants, setSelectedRestaurantId } from "../reducers/authReducer";
 
@@ -45,4 +45,23 @@ export const cantidadPlato = (cantidad) =>{
             console.log('error cantidad', error);
         }
     }   
+}
+export const filterRestaurant = (name) => {
+    return async (dispatch) => {
+        
+        const q = query(coleccionRestaurants, where("type", "==",name));
+        const querySnapshot = await getDocs(q);
+        console.log(querySnapshot);
+        const tempArr = [];
+        querySnapshot.forEach((doc) => {     
+            tempArr.push({ id: doc.id, ...doc.data() })
+        });
+        try {
+            dispatch(setRestaurants(tempArr));
+            
+        } catch (error) {
+            console.log("error", error);
+            
+        }
+    };
 }

@@ -7,6 +7,7 @@ const initialState = {
     platoSeleccionado: [],
     cantidad: null,
     error: false,
+    filter: [],
 };
 
 const authSlice = createSlice({
@@ -36,6 +37,9 @@ const authSlice = createSlice({
         },
         setError: (state, action) => {
             state.error = action.payload
+        },
+        setFilter: (state, action) => {
+            state.filter = action.payload
         }
     }
 });
@@ -50,5 +54,6 @@ export const {
     setPlatoSeleccionado,
     setCantidad,
     setError,
+    setFilter
 } = authSlice.actions;
 export default authSlice.reducer;

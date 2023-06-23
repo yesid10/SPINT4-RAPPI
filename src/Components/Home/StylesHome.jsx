@@ -79,6 +79,7 @@ export const Div = styled.div`
       height: 30vh;
       margin-right: 1%;
       border-radius: 10px;
+      cursor: pointer;
     }
     img {
       width: 80%;
@@ -92,6 +93,7 @@ export const Div = styled.div`
     display: flex;
     justify-content: space-evenly;
     gap: 1rem;
+    cursor: pointer;
     div {
       width: 25%;
       display: flex;
